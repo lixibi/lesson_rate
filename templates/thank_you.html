@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}提交成功 - 感谢您的评价{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="text-center">
+            <div class="success-icon mb-4">
+                <i class="fas fa-check-circle fa-5x text-success"></i>
+            </div>
+            <h1 class="display-4 text-success mb-3">提交成功！</h1>
+            <p class="lead text-muted mb-4">
+                感谢您的宝贵评价，您的意见将帮助我们不断改进教学质量。
+            </p>
+            
+            <div class="card bg-light border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">
+                        <i class="fas fa-heart me-2"></i>
+                        您的参与很重要
+                    </h5>
+                    <p class="card-text">
+                        每一份评价都是我们前进的动力，我们会认真对待每一条建议，
+                        持续提升专业技术课程的教学水平。
+                    </p>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-block">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4">
+                    <i class="fas fa-home me-2"></i>
+                    返回首页
+                </a>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="fas fa-plus me-2"></i>
+                    评价其他课程
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.success-icon {
+    animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    80% {
+        transform: translateY(-10px);
+    }
+}
+</style>
+{% endblock %}

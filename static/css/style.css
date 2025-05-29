@@ -1,0 +1,360 @@
+/* 全局样式 */
+:root {
+    --primary-color: #2c5aa0;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+/* 导航栏样式 */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* 主容器 */
+main.container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* 课程卡片样式 */
+.course-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* 课程头部样式 */
+.course-header {
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.course-number .badge {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(44, 90, 160, 0.3);
+}
+
+.course-icon {
+    opacity: 0.8;
+}
+
+/* 讲师信息卡片 */
+.instructor-card {
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.instructor-card:hover {
+    border-color: var(--primary-color);
+    background: #f0f7ff !important;
+}
+
+.instructor-info strong {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+/* 问卷样式 */
+.course-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border: 2px solid #dee2e6 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.course-info .badge {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(44, 90, 160, 0.3);
+}
+
+.instructor-highlight strong {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    background: rgba(44, 90, 160, 0.1);
+    border-radius: 4px;
+}
+
+.question-group {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.question-title {
+    color: var(--dark-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* 选项卡片样式 */
+.option-card {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+.option-card:hover {
+    border-color: var(--primary-color);
+    background: #f0f7ff;
+}
+
+.option-card input[type="radio"]:checked + label {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.option-card input[type="radio"] {
+    display: none;
+}
+
+.option-card label {
+    margin: 0;
+    cursor: pointer;
+    font-weight: 500;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* 评分卡片特殊样式 */
+.score-card .score-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.score-card .stars {
+    color: #ffc107;
+    font-size: 1rem;
+}
+
+.score-card input[type="radio"]:checked + label .stars {
+    color: white;
+}
+
+/* 表单控件样式 */
+.form-control {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #4a69bd);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #1e3d72, var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(44, 90, 160, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, var(--success-color), #20c997);
+    border: none;
+}
+
+.btn-success:hover {
+    background: linear-gradient(45deg, #1e7e34, var(--success-color));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* 徽章样式 */
+.badge {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+/* 警告框样式 */
+.alert {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 页脚样式 */
+footer {
+    background: rgba(248, 249, 250, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    main.container {
+        margin: 1rem;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .course-card {
+        margin-bottom: 1rem;
+    }
+
+    .course-header {
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1.5rem;
+    }
+
+    .course-number .badge {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 0.5rem;
+    }
+
+    .course-icon {
+        margin-left: 0 !important;
+        margin-bottom: 1rem;
+    }
+
+    .instructor-card {
+        padding: 1rem !important;
+    }
+
+    .instructor-highlight {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .instructor-highlight strong {
+        margin-top: 0.5rem;
+        font-size: 1.2rem !important;
+    }
+
+    .course-info .badge {
+        width: 25px;
+        height: 25px;
+    }
+
+    .question-group {
+        padding: 1rem;
+    }
+
+    .option-card {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .btn-lg {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .option-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.course-card, .question-group {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.course-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.question-group:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.question-group:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.question-group:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.question-group:nth-child(5) {
+    animation-delay: 0.4s;
+}

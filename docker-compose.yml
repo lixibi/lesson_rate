@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  survey-app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=your-production-secret-key-here
+    volumes:
+      - survey_data:/app/instance
+    restart: unless-stopped
+
+volumes:
+  survey_data:
