@@ -3,6 +3,7 @@ from models import db, Course, Survey
 from config import Config
 import xml.etree.ElementTree as ET
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -10,51 +11,74 @@ app.config.from_object(Config)
 # 初始化数据库
 db.init_app(app)
 
+# Global flag to track if database is initialized
+_db_initialized = False
+
 def init_db():
     """初始化数据库并添加测试数据"""
-    with app.app_context():
-        db.create_all()
+    global _db_initialized
 
-        # 检查是否已有数据
-        if Course.query.count() == 0:
-            # 添加课程数据
-            course1 = Course(
-                name="调频广播发射机原理解析",
-                instructor="郭龙",
-                description="深入讲解调频广播发射机的工作原理、技术特点和应用场景"
-            )
+    if _db_initialized:
+        return
 
-            course2 = Course(
-                name="调频广播发射机的常见故障分析和处理",
-                instructor="薛松",
-                description="分析调频广播发射机常见故障类型，提供实用的故障诊断和处理方法"
-            )
+    try:
+        with app.app_context():
+            db.create_all()
 
-            db.session.add(course1)
-            db.session.add(course2)
+            # 检查是否已有数据
+            if Course.query.count() == 0:
+                # 添加课程数据
+                course1 = Course(
+                    name="调频广播发射机原理解析",
+                    instructor="郭龙",
+                    description="深入讲解调频广播发射机的工作原理、技术特点和应用场景"
+                )
 
-            # 添加一些测试调查数据
-            test_survey1 = Survey(
-                course_id=1,
-                content_preparation="准备充分",
-                practical_relevance="非常好",
-                overall_score=10,
-                suggestions="课程内容很实用，希望能增加更多实际案例",
-                ip_address="127.0.0.1"
-            )
+                course2 = Course(
+                    name="调频广播发射机的常见故障分析和处理",
+                    instructor="薛松",
+                    description="分析调频广播发射机常见故障类型，提供实用的故障诊断和处理方法"
+                )
 
-            test_survey2 = Survey(
-                course_id=2,
-                content_preparation="比较充分",
-                practical_relevance="比较好",
-                overall_score=9,
-                suggestions="故障分析很详细，建议增加视频演示",
-                ip_address="127.0.0.1"
-            )
+                db.session.add(course1)
+                db.session.add(course2)
 
-            db.session.add(test_survey1)
-            db.session.add(test_survey2)
-            db.session.commit()
+                # 只在本地开发环境添加测试数据
+                if not os.environ.get('DATABASE_URL'):
+                    # 添加一些测试调查数据
+                    test_survey1 = Survey(
+                        course_id=1,
+                        content_preparation="准备充分",
+                        practical_relevance="非常好",
+                        overall_score=10,
+                        suggestions="课程内容很实用，希望能增加更多实际案例",
+                        ip_address="127.0.0.1"
+                    )
+
+                    test_survey2 = Survey(
+                        course_id=2,
+                        content_preparation="比较充分",
+                        practical_relevance="比较好",
+                        overall_score=9,
+                        suggestions="故障分析很详细，建议增加视频演示",
+                        ip_address="127.0.0.1"
+                    )
+
+                    db.session.add(test_survey1)
+                    db.session.add(test_survey2)
+
+                db.session.commit()
+
+            _db_initialized = True
+    except Exception as e:
+        print(f"Database initialization error: {e}")
+        # In serverless environment, we might not be able to initialize DB
+        # This is okay if using external database service
+
+@app.before_first_request
+def ensure_db_initialized():
+    """确保数据库在第一次请求前初始化"""
+    init_db()
 
 @app.route('/')
 def index():
